@@ -34,7 +34,7 @@ st.write("""
 framework = st.radio("Choose a Framework",('React JS', 'Next JS', 'Node JS', 'Three JS (React-Three-Fiber)'))
 
 def project_creator(frameName,checkName):
-    with st.form(key='setup-form-react'):
+    with st.form(key='setup-form-framework'):
         name = st.text_input(label="Enter the name of your " + checkName + " App (all lowercase) : ")
         sass = st.checkbox("Sass", value=False)
         framer = st.checkbox("Framer Motion", value=False)
@@ -53,14 +53,14 @@ if(framework == "React JS"):
 elif(framework == "Next JS"):
     project_creator("next",framework)
 elif(framework == "Node JS"):
-    with st.form(key='setup-form-next'):
+    with st.form(key='setup-form-node'):
         submit_button = st.form_submit_button(label='Create Node JS project')
     if(submit_button):
         setup_result = subprocess.run("mkdir node_server", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         setup_result = subprocess.run("npm init -y ", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./node_server")
         st.error(setup_result.stdout.decode())
 elif(framework == "Three JS (React-Three-Fiber)"):
-    with st.form(key='setup-form-react'):
+    with st.form(key='setup-form-three'):
         name = st.text_input(label="Enter the name of your Three JS App (all lowercase) : ")
         drei = st.checkbox("Drei", value=False)
         sass = st.checkbox("Sass", value=False)
