@@ -2,7 +2,7 @@ import streamlit as st
 import subprocess
 
 ###### Installing Standard Libraries  #####
-def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha  ):
+def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha, bodyparser, dotenv  ):
     if(sass):
         setup_result = subprocess.run("npm install sass --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.error(setup_result.stdout.decode())
@@ -42,9 +42,6 @@ def library_install(name,sass,framer,react_icons,materialUI,victory, react_revea
     if(nodemon):
         setup_result = subprocess.run("npm install --save-dev nodemon", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.error(setup_result.stdout.decode())
-    if(nodemon):
-        setup_result = subprocess.run("npm install --save-dev nodemon", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
-        st.error(setup_result.stdout.decode())
     if(react_hook_form):
         setup_result = subprocess.run("npm install react-hook-form --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.error(setup_result.stdout.decode())
@@ -60,11 +57,17 @@ def library_install(name,sass,framer,react_icons,materialUI,victory, react_revea
     if(recaptcha):
         setup_result = subprocess.run("npm install --save react-google-recaptcha", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.error(setup_result.stdout.decode())
+    if(bodyparser):
+        setup_result = subprocess.run("npm install body-parser --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.error(setup_result.stdout.decode())
+    if(dotenv):
+        setup_result = subprocess.run("npm install dotenv --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.error(setup_result.stdout.decode())
         
 ###### Getting Input and Setup Project  #####
 sass = framer  = react_icons = materialUI = victory = drei = react_spring = react_reveal = express = boron = animejs = False
 cors = stripe  = nodemon = False
-react_hook_form = react_hook_error = nodemailer = axios = recaptcha = False
+react_hook_form = react_hook_error = nodemailer = axios = recaptcha = bodyparser = dotenv = False
 st.write("""
     # Framework Setup🔥
     """
@@ -97,7 +100,7 @@ def project_creator(frameName,checkName):
         setup_command = "npx create-" + frameName + "-app " + name
         setup_result = subprocess.run(setup_command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         st.error(setup_result.stdout.decode())
-        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha  )
+        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha,bodyparser, dotenv    )
         
 if(framework == "React JS"):
     project_creator("react",framework)
@@ -107,6 +110,10 @@ elif(framework == "Node JS"):
     with st.form(key='setup-form-node'):
         express = st.checkbox("Express", value=False)
         nodemon = st.checkbox("Nodemon", value=False)
+        cors = st.checkbox("Cors", value=False)
+        bodyparser = st.checkbox("Bodyparser", value=False)
+        dotenv = st.checkbox("Dotenv", value=False)
+        axios = st.checkbox("Axios", value=False)
         submit_button = st.form_submit_button(label='Create Node JS project')
     if(submit_button):
         if(express):
@@ -114,6 +121,18 @@ elif(framework == "Node JS"):
             st.error(setup_result.stdout.decode())
         if(nodemon):
             setup_result = subprocess.run("npm install --save-dev nodemon", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+            st.error(setup_result.stdout.decode())
+        if(cors):
+            setup_result = subprocess.run("npm install cors --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+            st.error(setup_result.stdout.decode())
+        if(axios):
+            setup_result = subprocess.run("npm install axios --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+            st.error(setup_result.stdout.decode())
+        if(bodyparser):
+            setup_result = subprocess.run("npm install body-parser --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+            st.error(setup_result.stdout.decode())
+        if(dotenv):
+            setup_result = subprocess.run("npm install dotenv --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
             st.error(setup_result.stdout.decode())
         setup_result = subprocess.run("mkdir node_server", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         setup_result = subprocess.run("npm init -y ", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./node_server")
