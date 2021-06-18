@@ -97,8 +97,8 @@ def project_creator(frameName,checkName):
         recaptcha = st.checkbox("Google Recaptcha v2", value=False)
         submit_button = st.form_submit_button(label='Submit')
     if(submit_button):
-        if(frameName == next):
-            setup_result = subprocess.run("npm install --global @create-next-app/core", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
+        if(frameName == "next"):
+            setup_result = subprocess.run("npm install --global create-next-app", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         setup_command = "npx create-" + frameName + "-app " + name
         setup_result = subprocess.run(setup_command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         st.error(setup_result.stdout.decode())
