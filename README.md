@@ -1,6 +1,8 @@
 # Web-Dev-Framework-Setup
 A Python Coded App to easily initialze a Web Development Environment. Currently included Frameworks : React JS, Next JS, Node JS, Three JS
 
+**In order to use the program, please clone the repo**
+
 Instructions :
 1. Run the file Runner.exe
 2. [ You will be directed to a Python UI on your browser ] 
