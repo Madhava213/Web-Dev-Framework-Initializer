@@ -2,7 +2,7 @@ import streamlit as st
 import subprocess
 
 ###### Installing Standard Libraries  #####
-def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha, bodyparser, dotenv, react_spinner,react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu  ):
+def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha, bodyparser, dotenv, react_spinner,react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu, faunadb, chakraui  ):
     if(sass):
         setup_result = subprocess.run("npm install sass --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("Sass ⇓")
@@ -115,6 +115,14 @@ def library_install(name,sass,framer,react_icons,materialUI,victory, react_revea
         setup_result = subprocess.run("npm install react-burger-menu --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("React Animated Burger Sidebar ⇓")
         st.error(setup_result.stdout.decode())
+    if(faunadb):
+        setup_result = subprocess.run("npm install --save faunadb", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Fauna DB ⇓")
+        st.error(setup_result.stdout.decode())
+    if(chakraui):
+        setup_result = subprocess.run("npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@ --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Chakra UI ⇓")
+        st.error(setup_result.stdout.decode())
     
         
 ###### Getting Input and Setup Project  #####
@@ -123,6 +131,7 @@ cors = stripe  = nodemon = react_spinner = False
 react_hook_form = react_hook_error = nodemailer = axios = recaptcha = bodyparser = dotenv = False
 react_intersection_observer = next_on_netlify = netlify_cli = False
 bootstrap = react_suite = react_animated_burgers = react_burger_menu = False
+faunadb = chakraui = False
 st.write("""
     # Framework Setup🔥
     """
@@ -158,6 +167,8 @@ def project_creator(frameName,checkName):
         react_suite = st.checkbox("React Suite", value=False)
         react_animated_burgers = st.checkbox("React Animated Burger Icon", value=False)
         react_burger_menu = st.checkbox("React Animated Burger Sidebar", value=False)
+        faunadb = st.checkbox("Fauna DB", value=False)
+        chakraui = st.checkbox("Chakra UI", value=False)
         submit_button = st.form_submit_button(label='Submit')
     if(submit_button):
         if(frameName == "next"):
@@ -165,7 +176,7 @@ def project_creator(frameName,checkName):
         setup_command = "npx create-" + frameName + "-app " + name
         setup_result = subprocess.run(setup_command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         st.error(setup_result.stdout.decode())
-        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha,bodyparser, dotenv, react_spinner, react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu    )
+        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha,bodyparser, dotenv, react_spinner, react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu , faunadb, chakraui    )
 if(framework == "React JS"):
     project_creator("react",framework)
     st.success("THE PROGRAM HAS RAN SUCCESSFULLY! 🎉")
