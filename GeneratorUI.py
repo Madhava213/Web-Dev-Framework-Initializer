@@ -2,7 +2,7 @@ import streamlit as st
 import subprocess
 
 ###### Installing Standard Libraries  #####
-def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha, bodyparser, dotenv, react_spinner,react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu, faunadb, chakraui  ):
+def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha, bodyparser, dotenv, react_spinner,react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu, faunadb, chakraui,semanticui,evergreen, grommet, elementalui, rebass, onsenui  ):
     if(sass):
         setup_result = subprocess.run("npm install sass --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("Sass ⇓")
@@ -123,6 +123,30 @@ def library_install(name,sass,framer,react_icons,materialUI,victory, react_revea
         setup_result = subprocess.run("npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@ --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("Chakra UI ⇓")
         st.error(setup_result.stdout.decode())
+    if(semanticui):
+        setup_result = subprocess.run("npm install semantic-ui-react semantic-ui-css --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Semantic UI ⇓")
+        st.error(setup_result.stdout.decode())
+    if(evergreen):
+        setup_result = subprocess.run("npm install evergreen-ui --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Evergreen UI ⇓")
+        st.error(setup_result.stdout.decode())
+    if(grommet):
+        setup_result = subprocess.run("npm install grommet grommet-icons styled-components --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Grommet UI ⇓")
+        st.error(setup_result.stdout.decode())
+    if(elementalui):
+        setup_result = subprocess.run("npm install elemental --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Elemental UI ⇓")
+        st.error(setup_result.stdout.decode())
+    if(rebass):
+        setup_result = subprocess.run("npm i rebass --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Rebass ⇓")
+        st.error(setup_result.stdout.decode())
+    if(onsenui):
+        setup_result = subprocess.run("npm install onsenui react-onsenui --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Onesen UI ⇓")
+        st.error(setup_result.stdout.decode())
     
         
 ###### Getting Input and Setup Project  #####
@@ -131,7 +155,7 @@ cors = stripe  = nodemon = react_spinner = False
 react_hook_form = react_hook_error = nodemailer = axios = recaptcha = bodyparser = dotenv = False
 react_intersection_observer = next_on_netlify = netlify_cli = False
 bootstrap = react_suite = react_animated_burgers = react_burger_menu = False
-faunadb = chakraui = False
+faunadb = chakraui = semanticui = evergreen = grommet = elementalui = rebass = onsenui = False
 st.write("""
     # Framework Setup🔥
     """
@@ -169,6 +193,12 @@ def project_creator(frameName,checkName):
         react_burger_menu = st.checkbox("React Animated Burger Sidebar", value=False)
         faunadb = st.checkbox("Fauna DB", value=False)
         chakraui = st.checkbox("Chakra UI", value=False)
+        semanticui = st.checkbox("Semantic UI", value=False)
+        evergreen = st.checkbox("Evergreen UI", value=False)
+        grommet = st.checkbox("Grommet UI", value=False)
+        elementalui = st.checkbox("Elemental UI", value=False)
+        rebass = st.checkbox("Rebass", value=False)
+        onsenui = st.checkbox("Onsen UI", value=False)
         submit_button = st.form_submit_button(label='Submit')
     if(submit_button):
         if(frameName == "next"):
@@ -176,13 +206,12 @@ def project_creator(frameName,checkName):
         setup_command = "npx create-" + frameName + "-app " + name
         setup_result = subprocess.run(setup_command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         st.error(setup_result.stdout.decode())
-        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha,bodyparser, dotenv, react_spinner, react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu , faunadb, chakraui    )
+        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha,bodyparser, dotenv, react_spinner, react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu , faunadb, chakraui ,semanticui,evergreen, grommet, elementalui, rebass, onsenui   )
+        st.success("THE PROGRAM HAS RAN SUCCESSFULLY! 🎉")
 if(framework == "React JS"):
     project_creator("react",framework)
-    st.success("THE PROGRAM HAS RAN SUCCESSFULLY! 🎉")
 elif(framework == "Next JS"):
     project_creator("next",framework)
-    st.success("THE PROGRAM HAS RAN SUCCESSFULLY! 🎉")
 elif(framework == "Node JS"):
     with st.form(key='setup-form-node'):
         express = st.checkbox("Express", value=False)
