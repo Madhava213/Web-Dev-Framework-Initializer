@@ -24,7 +24,7 @@ def library_install(name,sass,framer,react_icons,materialUI,victory, react_revea
         st.success("Victory ⇓")
         st.error(setup_result.stdout.decode())
     if(react_reveal):
-        setup_result = subprocess.run("npm install react-reveal --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        setup_result = subprocess.run("npm install react-reveal --save --force", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("React Reveal ⇓")
         st.error(setup_result.stdout.decode())
     if(react_spring):
@@ -108,7 +108,7 @@ def library_install(name,sass,framer,react_icons,materialUI,victory, react_revea
         st.success("React suite ⇓")
         st.error(setup_result.stdout.decode())
     if(react_animated_burgers):
-        setup_result = subprocess.run("npm i -S react-animated-burgers styled-components --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        setup_result = subprocess.run("npm i -S react-animated-burgers styled-components --save --force", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("React Animated Burger Icon ⇓")
         st.error(setup_result.stdout.decode())
     if(react_burger_menu):
