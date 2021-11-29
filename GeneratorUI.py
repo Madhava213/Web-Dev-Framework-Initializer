@@ -2,7 +2,7 @@ import streamlit as st
 import subprocess
 
 ###### Installing Standard Libraries  #####
-def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha, bodyparser, dotenv, react_spinner,react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu, faunadb, chakraui,semanticui,evergreen, grommet, elementalui, rebass, onsenui  ):
+def library_install(name,sass,framer,react_icons,materialUI,victory, react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha, bodyparser, dotenv, react_spinner,react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu, faunadb, chakraui,semanticui,evergreen, grommet, elementalui, rebass, onsenui,syntax_highlighter, copy_to_clipboard ):
     if(sass):
         setup_result = subprocess.run("npm install sass --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("Sass ⇓")
@@ -147,6 +147,14 @@ def library_install(name,sass,framer,react_icons,materialUI,victory, react_revea
         setup_result = subprocess.run("npm install onsenui react-onsenui --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
         st.success("Onesen UI ⇓")
         st.error(setup_result.stdout.decode())
+    if(syntax_highlighter):
+        setup_result = subprocess.run("npm install react-syntax-highlighter --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Syntax Highlighter ⇓")
+        st.error(setup_result.stdout.decode())
+    if(copy_to_clipboard):
+        setup_result = subprocess.run("npm install react-copy-to-clipboard --save", stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, cwd="./" + name)
+        st.success("Copy to Clipboard ⇓")
+        st.error(setup_result.stdout.decode())
     
         
 ###### Getting Input and Setup Project  #####
@@ -156,6 +164,7 @@ react_hook_form = react_hook_error = nodemailer = axios = recaptcha = bodyparser
 react_intersection_observer = next_on_netlify = netlify_cli = False
 bootstrap = react_suite = react_animated_burgers = react_burger_menu = False
 faunadb = chakraui = semanticui = evergreen = grommet = elementalui = rebass = onsenui = False
+copy_to_clipboard = syntax_highlighter = False
 st.write("""
     # Framework Setup🔥
     """
@@ -199,6 +208,8 @@ def project_creator(frameName,checkName):
         elementalui = st.checkbox("Elemental UI", value=False)
         rebass = st.checkbox("Rebass", value=False)
         onsenui = st.checkbox("Onsen UI", value=False)
+        syntax_highlighter = st.checkbox("Syntax Highlighter", value=False)
+        copy_to_clipboard = st.checkbox("Copy to Clipboard", value=False)
         submit_button = st.form_submit_button(label='Submit')
     if(submit_button):
         if(frameName == "next"):
@@ -206,7 +217,7 @@ def project_creator(frameName,checkName):
         setup_command = "npx create-" + frameName + "-app " + name
         setup_result = subprocess.run(setup_command, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True)
         st.error(setup_result.stdout.decode())
-        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha,bodyparser, dotenv, react_spinner, react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu , faunadb, chakraui ,semanticui,evergreen, grommet, elementalui, rebass, onsenui   )
+        library_install(name,sass,framer,react_icons,materialUI,victory,react_reveal, react_spring, express, boron, animejs, cors, stripe, nodemon, react_hook_form, react_hook_error, nodemailer, axios, recaptcha,bodyparser, dotenv, react_spinner, react_intersection_observer,next_on_netlify,netlify_cli,bootstrap,react_suite,react_animated_burgers, react_burger_menu , faunadb, chakraui ,semanticui,evergreen, grommet, elementalui, rebass, onsenui, syntax_highlighter, copy_to_clipboard   )
         st.success("THE PROGRAM HAS RAN SUCCESSFULLY! 🎉")
 if(framework == "React JS"):
     project_creator("react",framework)
