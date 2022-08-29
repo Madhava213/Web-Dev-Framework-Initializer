@@ -14,11 +14,11 @@ frameworks = {
         "libraries": Libraries.reactJSLibraries
     },
     'Next JS': {
-        "command": "npm install --global create-next-app ",
+        "command": "npx create-next-app ",
         "libraries": Libraries.nextJSLibraries
     },
     'Clean Boilerplate Next JS': {
-        "command": "npm install --global create-next-app ",
+        "command": "npx create-next-app ",
         "libraries": Libraries.cleanNextJSLibraries
     },
     'Three JS (React-Three-Fiber)': {
